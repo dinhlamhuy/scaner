@@ -1,34 +1,23 @@
 import React, { useState } from 'react';
-import QrScanner from 'react-qr-scanner';
+import QrBarcodeScanner from 'react-qr-barcode-scanner';
 
 const App = () => {
-  const [result, setResult] = useState('No result');
-
-  const handleScan = (data) => {
-    if (data) {
-      setResult(data);
-    }
-  };
-
-  const handleError = (err) => {
-    console.error(err);
-  };
-
-  const previewStyle = {
-    height: 240,
-    width: 320,
-  };
+  const [data, setData] = useState('No result');
 
   return (
     <div>
-      <h1>React QR Scanner</h1>
-      <QrScanner
-        delay={300}
-        style={previewStyle}
-        onError={handleError}
-        onScan={handleScan}
+      <h1>QR & Barcode Scanner</h1>
+      <QrBarcodeScanner
+        onUpdate={(err, result) => {
+          if (result) {
+            setData(result.text);
+          }
+          if (err) {
+            console.error(err);
+          }
+        }}
       />
-      <p>Result: {result}</p>
+      <p>Result: {data}</p>
     </div>
   );
 };
