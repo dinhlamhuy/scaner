@@ -11,6 +11,7 @@ const App = () => {
     // Kiểm tra xem thiết bị có phải iOS không
     const checkIOS = () => {
       const userAgent = window.navigator.userAgent;
+      alert('true')
       return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
     };
     setIsIOS(checkIOS());
